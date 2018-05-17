@@ -19,7 +19,7 @@ public class MyFrame {
         JPanel surface = new JPanel();
         frame.setMinimumSize(new Dimension(1100, 800));
         frame.setLocationRelativeTo(null);
-        //*** این بخش به طور کلی برای hide شدن پنجره است
+        //*** این بخش به طور کلی برای hide شدن پنجره است****************
         SystemTray systemTray = SystemTray.getSystemTray();
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image image = toolkit.getImage("KDM.jpg");
@@ -49,7 +49,7 @@ public class MyFrame {
         } catch (AWTException e) {
             e.printStackTrace();
         }
-        //****
+        //*****************************************************
         ImageIcon imageIcon = new ImageIcon("KDM.jpg");
         frame.setIconImage(imageIcon.getImage());
         surface.setLayout(new BorderLayout(0, 0));
@@ -61,6 +61,27 @@ public class MyFrame {
         JToolBar toolBar = new JToolBar("toolbar");
         toolBar = new ToolBar(toolBar).getToolBar();
         toolBar.setRollover(true);
+
+
+        //********for testing
+        processing.setLayout(new GridLayout(10,1,10,10));
+        processing.add(new FormDownload("ali",5,2,1).getSurface());
+        processing.add(new FormDownload("ali",5,2,1).getSurface());
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //***************************************/
+
 
 
         menuBar.add(new DownloadMenue().jMenu);

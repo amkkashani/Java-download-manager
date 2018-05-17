@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 public class SettingPage {
     JFrame jFrame = new JFrame("setting");
@@ -18,6 +19,7 @@ public class SettingPage {
         surface.setLayout(new BorderLayout());
         JTextField numberDownload = new JTextField();
         jFileChooser = new JFileChooser();
+        jFileChooser.setFileSelectionMode( JFileChooser.DIRECTORIES_ONLY);
         JPanel up = new JPanel();
         JPanel down = new JPanel(new GridLayout(1, 3));
         JButton nimbus = new JButton("nimbus");
@@ -32,6 +34,15 @@ public class SettingPage {
         up.add(numberDownload, BorderLayout.CENTER);
         surface.add(up, BorderLayout.NORTH);
         surface.add(jFileChooser, BorderLayout.CENTER);
+        ((JButton)((JPanel)((JPanel)jFileChooser.getComponent(3)).getComponent(3)).getComponent(1)).setText("Accept");
+        ((JButton)((JPanel)((JPanel)jFileChooser.getComponent(3)).getComponent(3)).getComponent(0)).setVisible(false);
+        ((JButton)((JPanel)((JPanel)jFileChooser.getComponent(3)).getComponent(3)).getComponent(1)).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jFrame.dispatchEvent(new WindowEvent(jFrame, WindowEvent.WINDOW_CLOSING));
+
+            }
+        });
         metal.addActionListener(new look());
         down.add(nimbus);
         down.add(windows);
@@ -90,11 +101,14 @@ public class SettingPage {
                     e1.printStackTrace();
                 }
             }
-            try {
+            try{
                 ((JButton)((JPanel)((JPanel)jFileChooser.getComponent(3)).getComponent(3)).getComponent(1)).setText("Accept");
-            }catch (Exception ex){
-                ((JPanel)((JPanel)((JPanel)((JPanel)jFileChooser.getComponent(2)).getComponent(2)).getComponent(4)).getComponent(2)).setVisible(false);
+                ((JButton)((JPanel)((JPanel)jFileChooser.getComponent(3)).getComponent(3)).getComponent(0)).setText("back");
             }
+            catch(Exception e1) {
+
+            }
+
 
         }
     }

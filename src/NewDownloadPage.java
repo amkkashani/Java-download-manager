@@ -23,7 +23,6 @@ public class NewDownloadPage {
         JPanel center=new JPanel();
         jFileChooser=new JFileChooser();           //**********************
         jFileChooser.setFileSelectionMode( JFileChooser.DIRECTORIES_ONLY);
-        System.out.println(UIManager.getLookAndFeel());
         try {
             ((JPanel)((JPanel)jFileChooser.getComponent(3)).getComponent(3)).setVisible(false);
         }catch (Exception ex){
