@@ -2,6 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        MyFrame myFrame= new MyFrame();
+        MyFrame myFrame = new MyFrame();
+//        ScroolTesting testing=new ScroolTesting();
     }
 }
