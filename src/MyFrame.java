@@ -5,12 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+/**
+ * main of the gui
+ */
+
 public class MyFrame {
 
     public static JPanel processing = new JPanel();
-    public static JScrollPane proccessingScroll=new JScrollPane(processing);
+    public static JScrollPane proccessingScroll = new JScrollPane(processing);
     public static JPanel queues = new JPanel();
-    public static JScrollPane queuesScroll=new JScrollPane(queues);
+    public static JScrollPane queuesScroll = new JScrollPane(queues);
     //    public static JPanel completed = new JPanel();
 
     //public static JPanel defult = new JPanel();
@@ -27,8 +31,8 @@ public class MyFrame {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image image = toolkit.getImage("KDM.jpg");
         PopupMenu popupMenu = new PopupMenu();
-        TrayIcon icon = new TrayIcon(image, "JDM Program", popupMenu);
-        MenuItem openItem = new MenuItem("Open JDM");
+        TrayIcon icon = new TrayIcon(image, "KDM Program", popupMenu);
+        MenuItem openItem = new MenuItem("Open KDM");
         openItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,7 +41,7 @@ public class MyFrame {
         });
         popupMenu.add(openItem);
 
-        MenuItem closeItem = new MenuItem("Close JDM");
+        MenuItem closeItem = new MenuItem("Close KDM");
         closeItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,12 +74,13 @@ public class MyFrame {
         processing.setLayout(new GridLayout(7, 1));
 //        processing.add(new FormDownload("ali","adfa","adfa",2,3,4).getSurface());
 //        processing.add(new FormDownload("ali", "5","asdfa", 2, 1,2).getSurface());
-        queues.setLayout(new GridLayout(7,1));
+        queues.setLayout(new GridLayout(7, 1));
 
         //***************************************/
 
 
         menuBar.add(new DownloadMenue().jMenu);
+        menuBar.add(new Sorts().getSorts());
         menuBar.add(new Help().jMenu);
 
 

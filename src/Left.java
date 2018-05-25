@@ -5,6 +5,25 @@ import java.awt.event.ActionListener;
 
 public class Left {
     private  JPanel mainPanel ;
+    private JButton processing;
+    private JButton queues;
+
+    public JButton getProcessing() {
+        return processing;
+    }
+
+    public void setProcessing(JButton processing) {
+        this.processing = processing;
+    }
+
+    public JButton getQueues() {
+        return queues;
+    }
+
+    public void setQueues(JButton queues) {
+        this.queues = queues;
+    }
+
     public Left(){
        // UIManager.setLookAndFeel();
         JPanel panelup = new JPanel();
@@ -21,7 +40,7 @@ public class Left {
         mainPanel.setPreferredSize(new Dimension(180,200));
 
 
-        JButton processing = new JButton("processing");
+        processing = new JButton("processing");
         processing.setBackground(Color.GRAY);
         processing.addActionListener(new page());
         processing.setBorderPainted(false);
@@ -32,7 +51,7 @@ public class Left {
         completed.addActionListener(new page());
         completed.setBorderPainted(false);
 
-        JButton queues = new JButton("queues");
+        queues = new JButton("queues");
         queues.setBackground(Color.lightGray);
         queues.addActionListener(new page());
         queues.setBorderPainted(false);
@@ -66,9 +85,10 @@ public class Left {
 //                MyFrame.defult.setVisible(false);
 //                MyFrame.queues.setVisible(false);
 //                MyFrame.completed.setVisible(false);
-                MyFrame.processing.setVisible(false);
+                MyFrame.proccessingScroll.setVisible(false);
                 MyFrame.center.add(MyFrame.queues, BorderLayout.CENTER);
                 MyFrame.queues.setVisible(true);
+                FormDownload.buttenSelected="queues";
 
             }
 
@@ -78,8 +98,10 @@ public class Left {
 //                MyFrame.queues.setVisible(false);
 //                MyFrame.completed.setVisible(false);
                 MyFrame.queues.setVisible(false);
-                MyFrame.center.add(MyFrame.processing, BorderLayout.CENTER);
-                MyFrame.processing.setVisible(true);
+                MyFrame.center.add(MyFrame.proccessingScroll, BorderLayout.CENTER);
+                MyFrame.proccessingScroll.setVisible(true);
+                FormDownload.buttenSelected="processing";
+//                MyFrame.proccessingScroll.setVisible(true);
 
             }
         }

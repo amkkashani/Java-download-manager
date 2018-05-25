@@ -2,9 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
+/**
+ * this class for menu tab in top of the page
+ */
 public class DownloadMenue {
     JMenu jMenu = new JMenu("Download");
 
@@ -46,10 +50,15 @@ public class DownloadMenue {
         item7.setMnemonic(KeyEvent.VK_E);
         item7.addActionListener(new functionDownload());
 
-        JMenuItem item8=new JMenuItem("switch");
-        item8.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,ActionEvent.CTRL_MASK));
+        JMenuItem item8 = new JMenuItem("switch");
+        item8.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         item8.setMnemonic(KeyEvent.VK_S);
         item8.addActionListener(new functionDownload());
+
+        JMenuItem search = new JMenuItem("search");
+        search.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.SHIFT_DOWN_MASK));
+        search.setMnemonic(KeyEvent.VK_S);
+        search.addActionListener(new functionDownload());
 
         jMenu.add(item1);
         jMenu.add(item2);
@@ -58,6 +67,7 @@ public class DownloadMenue {
         jMenu.add(item5);
         jMenu.add(item6);
         jMenu.add(item8);
+        jMenu.add(search);
         jMenu.add(item7);
 
     }
@@ -70,41 +80,43 @@ public class DownloadMenue {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String operator= ((JMenuItem) e.getSource()).getText();
-            if (operator .equals("Exit") ) {
+            String operator = ((JMenuItem) e.getSource()).getText();
+            if (operator.equals("Exit")) {
                 try {
                     DataBase.writeAvoidedSite();
+                    DataBase.writeOutQueu();
+                    DataBase.writeDeleted();
+                    SettingPage.writeCondition();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                     System.out.println("داداش این فایله که باید برای ریختن سایت های محدود شده پیدا می کردم رو پیدا نکردم");
                 }
+                DataBase.outWriteProces();
                 System.exit(0);
-                //System.out.println("salam");
             } else if (operator.equals("New download")) {
                 NewDownloadPage newDownloadPage = new NewDownloadPage();
-            }else if(operator.equals("Remove")){
-                if(FormDownload.selectedName.equals("")){
+            } else if (operator.equals("Remove")) {
+                if (FormDownload.selectedName.equals("")) {
                     System.out.println("*****************" +
                             "you dont choose" +
                             "*****************");
-                }
-                else{
+                } else {
                     new DataBase().remove(FormDownload.selectedName.toString());
                 }
 
-            }
-            else if(operator.equals("Setting")){
-                SettingPage settingPage=new SettingPage();
-            }
-            else if(operator.equals("switch")){
-                if(FormDownload.selectedName.equals("processing")||FormDownload.buttenSelected.equals("")){
+            } else if (operator.equals("Setting")) {
+                SettingPage settingPage = new SettingPage();
+            } else if (operator.equals("switch")) {
+                if (FormDownload.selectedName.equals("processing") || FormDownload.buttenSelected.equals("")) {
                     System.out.println("این امکان برای گزینه انتخاب شده وجود ندارد");
                     return;
                 }
-                Replace replace=new Replace();
+                Replace replace = new Replace();
 
+            }else if(operator.equals("search")){
+                Search search = new Search();
             }
-
         }
+
     }
 }

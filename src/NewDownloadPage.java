@@ -3,12 +3,15 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import javax.management.remote.JMXAddressable;
 import javax.management.remote.JMXServiceURL;
+import java.util.Calendar;
 import javax.print.DocFlavor;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 public class NewDownloadPage {
     JFrame jframe = new JFrame();
@@ -76,18 +79,23 @@ public class NewDownloadPage {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
             String dastoor = ((JButton) e.getSource()).getText();
             System.out.println(dastoor);
 
             if (dastoor.equals("cancel")) {
                 jframe.setVisible(false); //you can't see me!
                 jframe.dispose(); //Destroy the JFrame object
+            }
+            //این جا بررسی می شود کد آیا در بخش ممنوعه وجوددارد یا خیر
+            else if (DataBase.checkAvoided(jTextField1.getText())) {
+                System.out.println("با ارز تاسف استفاده از این سایت مجاز نمی باشد");
+                return;
             } else if (dastoor.equals("add to queue")) {
                 try {
-                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 50, 50, 2, DataBase.queue.size() + 1));
-                }
-                catch (Exception e1){
-                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(),DataBase.getPathDifault(), 50, 50, 2, DataBase.queue.size() + 1));
+                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 50, 50, 2, DataBase.queue.size() + 1,Calendar.getInstance()));
+                } catch (Exception e1) {
+                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 50, 50, 2, DataBase.queue.size() + 1,Calendar.getInstance()));
                 }
                 if (DataBase.process.size() >= 7) {
                     MyFrame.processing.setLayout(new GridLayout(DataBase.process.size() + 1, 1));
@@ -95,17 +103,20 @@ public class NewDownloadPage {
                 DataBase.updateQueue();
                 jframe.setVisible(false); //you can't see me!
                 jframe.dispose(); //Destroy the JFrame object
-            } else if (dastoor .equals("ok")) {
+            } else if (dastoor.equals("ok")) {
+
                 //FormDownload.selectedName="";
                 try {
                     if (DataBase.process.size() >= 7) {
                         MyFrame.processing.setLayout(new GridLayout(DataBase.process.size() + 1, 1));
                     }
                     System.out.println((jFileChooser.getSelectedFile().getAbsolutePath()));
-                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 50, 20, 45));
+                    Calendar time = Calendar.getInstance();
+                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 50, 20, 45,time));
                 } catch (NullPointerException e1) {
                     //*************************************************************************************************size , speed , improve دستی اد شده
-                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 50, 20, 45));
+                    Calendar time = Calendar.getInstance();
+                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 50, 20, 45,time));
                     System.out.println("آدرس وارد نشد؟");
                     if (DataBase.process.size() >= 7) {
                         MyFrame.processing.setLayout(new GridLayout(DataBase.process.size() + 1, 1));
