@@ -42,7 +42,6 @@ public class Search {
     private void searchin(String text) {
         ArrayList<FormDownload> temp = DataBase.process;
         frame.setSize(300, 75);
-        center.removeAll();
         for (FormDownload formDownload : temp) {
             if (formDownload.fileName.contains(text) || formDownload.address.equals(text)) {
                 JButton find = new JButton();
@@ -67,7 +66,7 @@ public class Search {
                 find.add(textRith);
                 center.setLayout(new GridLayout(center.getHeight() + 1, 1));
                 center.add(find);
-                frame.setSize(300, frame.getHeight() + 35);
+                frame.setSize(300, frame.getHeight() + 40);
 
             }
         }

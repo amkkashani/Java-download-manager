@@ -28,13 +28,15 @@ public class Main {
         DataBase.readQueueFile();
         DataBase.inputReadProces();
         DataBase.readDeleted();
-        DataBase.updateQueue();
-        DataBase.updateProcesing(1);
+
         SettingPage.readCondition();
         SettingPage.controLookAndFeel(SettingPage.lastLookAndFeel);
         //System.out.println(SettingPage.lastLookAndFeel);
 //        System.out.println(DataBase.process.get(0).fileName);
         DataBase.readAvoidedStite();
+        FormDownload.selectedName="";
+        DataBase.updateQueue();
+        DataBase.updateProcesing(1);
         MyFrame myFrame = new MyFrame();
 //        DataBase.sortName();
         JFrame jfram = new JFrame();
