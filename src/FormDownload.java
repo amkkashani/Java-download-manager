@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.util.Calendar;
 public class FormDownload implements Serializable {
     public static String selectedName = "";
     public static String buttenSelected = "";
+
     public JButton surface = new JButton();
     public Calendar time;
     public String address;
@@ -21,6 +23,18 @@ public class FormDownload implements Serializable {
     public int size;
     public String fileName;
     protected JPanel up;
+    JProgressBar jProgressBar;
+    public DownloadClient downloadClient=null;
+    private int activity=0;
+
+    public int isActivity() {
+        return activity;
+    }
+
+    public void setActivity(int activity) {
+        this.activity = activity;
+    }
+
     public int speed;//به احتمال قوی بعدا ای را بصورت استاتیک از جای دیگری دریافت خواهیم کرد
 
     public FormDownload(String fileName, String address, String setupLocation, int size, int speed, int improve,Calendar time) {
@@ -41,12 +55,15 @@ public class FormDownload implements Serializable {
         up.add(name);
         up.add(sizee);
         up.add(speedd);
-        JProgressBar jProgressBar = new JProgressBar();
+        jProgressBar = new JProgressBar();
         jProgressBar.setStringPainted(true);
         jProgressBar.setValue(improve * 100 / size);
         surface.add(up, BorderLayout.NORTH);
         //surface.addMouseListener(new controling());
         surface.add(jProgressBar, BorderLayout.CENTER);
+        ///////////////////////////*******************************for testing
+//        DownloadClient downloadClient = new DownloadClient(this);
+//        downloadClient.execute();
     }
 
     public JButton getSurface() {
@@ -56,6 +73,7 @@ public class FormDownload implements Serializable {
     class controling implements MouseListener, Serializable {
         @Override
         public void mouseClicked(MouseEvent e) {
+//            System.out.println("//////////////////"+buttenSelected+"///////////////////////");
             if (e.getModifiers() == MouseEvent.BUTTON3_MASK) {
                 System.out.println("You right clicked on the button");
                 ///****************************************************************
@@ -86,20 +104,32 @@ public class FormDownload implements Serializable {
                 selectedName = fileName;
                 System.out.println("با باتن دانلود برخورد کرد");
                 System.out.println(setupLocation);
+
             } else {
+                selectedName = fileName;
                 if (buttenSelected.equals("queues")) {
 
                     DataBase.updateProcesing(1);
                     DataBase.updateQueue();
+                    System.out.println("در صف زدی");
                 } else {
-                    System.out.println("در صف زده شد");
+                    System.out.println("در پروسس زده شد");
                     DataBase.updateQueue();
                     DataBase.updateProcesing(1);
                 }
-                ((JButton) e.getSource()).setBackground(new Color(255, 255, 2));
-                selectedName = fileName;
                 System.out.println("کلیک نوع دوم با موفقیت انحام شد");
 
+            }
+//            DataBase.updateQueue();
+//            DataBase.updateProcesing(1);
+            System.out.println("//////////////////"+buttenSelected+"///////////////////////");
+            if(buttenSelected =="queues"){
+                new Left().getQueues().doClick();
+//                System.out.println(buttenSelected+"****************************************");
+            }
+            else{
+//                System.out.println("*******************************");
+                new Left().getProcessing().doClick();
             }
 
         }
@@ -127,5 +157,9 @@ public class FormDownload implements Serializable {
 
     public void painterToRed() {
         surface.setBackground(new Color(250, 50, 60));
+    }
+    public void setjProgressBar(int value){
+        jProgressBar.setValue(value);
+
     }
 }

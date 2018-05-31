@@ -93,9 +93,9 @@ public class NewDownloadPage {
                 return;
             } else if (dastoor.equals("add to queue")) {
                 try {
-                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 50, 50, 2, DataBase.queue.size() + 1,Calendar.getInstance()));
+                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 1, 0, 0, DataBase.queue.size() + 1,Calendar.getInstance()));
                 } catch (Exception e1) {
-                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 50, 50, 2, DataBase.queue.size() + 1,Calendar.getInstance()));
+                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 1, 1, 1, DataBase.queue.size() + 1,Calendar.getInstance()));
                 }
                 if (DataBase.process.size() >= 7) {
                     MyFrame.processing.setLayout(new GridLayout(DataBase.process.size() + 1, 1));
@@ -112,11 +112,11 @@ public class NewDownloadPage {
                     }
                     System.out.println((jFileChooser.getSelectedFile().getAbsolutePath()));
                     Calendar time = Calendar.getInstance();
-                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 50, 20, 45,time));
+                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 1, 00, 0,time));
                 } catch (NullPointerException e1) {
                     //*************************************************************************************************size , speed , improve دستی اد شده
                     Calendar time = Calendar.getInstance();
-                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 50, 20, 45,time));
+                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 1, 0, 45,time));
                     System.out.println("آدرس وارد نشد؟");
                     if (DataBase.process.size() >= 7) {
                         MyFrame.processing.setLayout(new GridLayout(DataBase.process.size() + 1, 1));

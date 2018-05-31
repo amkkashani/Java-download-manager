@@ -126,8 +126,9 @@ public class DataBase {
         for (FormDownload formDownload : process) {
 
 //            formDownload.getSurface().setBackground(Color.yellow);
+            formDownload.painterToRed();
             if (FormDownload.selectedName.equals(formDownload.fileName)) {
-                formDownload.painterToRed();
+                formDownload.getSurface().setBackground(Color.yellow);
             }
             MyFrame.processing.add(formDownload.getSurface());
             System.out.println(formDownload.fileName);
@@ -142,16 +143,16 @@ public class DataBase {
 
     }
 
-    public static void updateQueue() {
-        System.out.println("salam");
+    public static void updateQueue() { System.out.println("salam");
         try {
             MyFrame.queues.removeAll();
         } catch (Exception e) {
 
         }
         for (FormQueue formQueue : queue) {
+                formQueue.getSurface().setBackground(Color.red);
             if (formQueue.fileName.equals(FormQueue.selectedName)) {
-                formQueue.painterToRed();
+                formQueue.getSurface().setBackground(Color.yellow);
             }
             MyFrame.queues.add(formQueue.getSurface());
             System.out.println(formQueue.fileName);
@@ -219,7 +220,7 @@ public class DataBase {
         return false;
     }
 
-    //این تابه چک می کنند که میسر وارد شده آیا محدود شده است یا خیر که اگر محدود شده باشد true بر می گرداند
+    //این تابه چک می کنند که مسیر وارد شده آیا محدود شده است یا خیر که اگر محدود شده باشد true بر می گرداند
     public static Boolean checkAvoided(String temp) {
         for (String matn : avoided) {
             if (temp.contains(matn)) {

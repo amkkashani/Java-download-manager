@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 public class Left {
     private  JPanel mainPanel ;
-    private JButton processing;
-    private JButton queues;
+    private   JButton processing;
+    private   JButton queues;
 
     public JButton getProcessing() {
         return processing;
@@ -80,7 +80,7 @@ public class Left {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(((JButton)e.getSource()).getText()=="queues"){
+            if(((JButton)e.getSource()).getText().equals("queues")){
 
 //                MyFrame.defult.setVisible(false);
 //                MyFrame.queues.setVisible(false);
@@ -92,7 +92,7 @@ public class Left {
 
             }
 
-             else if(((JButton)e.getSource()).getText()=="processing"){
+             else if(((JButton)e.getSource()).getText().equals("processing")){
 
 //                MyFrame.defult.setVisible(false);
 //                MyFrame.queues.setVisible(false);

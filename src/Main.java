@@ -25,6 +25,7 @@ public class Main {
         System.out.println(cal2.compareTo(cal));
         x= scanner.nextInt();
 */
+
         DataBase.readQueueFile();
         DataBase.inputReadProces();
         DataBase.readDeleted();
@@ -34,7 +35,7 @@ public class Main {
         //System.out.println(SettingPage.lastLookAndFeel);
 //        System.out.println(DataBase.process.get(0).fileName);
         DataBase.readAvoidedStite();
-        FormDownload.selectedName="";
+        FormDownload.selectedName = "";
         DataBase.updateQueue();
         DataBase.updateProcesing(1);
         MyFrame myFrame = new MyFrame();
