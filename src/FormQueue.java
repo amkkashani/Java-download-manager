@@ -6,7 +6,7 @@ import java.util.Calendar;
 public class FormQueue extends FormDownload implements Serializable {
     private int arange;
     private JTextField jTextField;
-    public DownloadClientQueue downloadClientQueue;
+    public static DownloadClientQueue downloadClientQueue;
     private static int activityQueue;
 
     public static int getActivityQueue() {
@@ -16,8 +16,10 @@ public class FormQueue extends FormDownload implements Serializable {
     public static void setActivityQueue(int activityQueue) {
         FormQueue.activityQueue = activityQueue;
     }
-
-
+    //0 بی کار
+    //1در حال دانلود
+    //2 تمام شده
+    //3 پاز شده
 
     public FormQueue(String fileName, String address, String setupLocation, int size, int speed, int improve, int order, Calendar time) {
         super(fileName, address, setupLocation, size, speed, improve,time);

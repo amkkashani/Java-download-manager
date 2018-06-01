@@ -32,6 +32,19 @@ public class DataBase {
         }
         updateProcesing(1);
     }
+    public static void sortNameReverce(){
+        FormDownload temp;
+        for(int i=1;i<process.size();i++){
+            for(int j=0;j<process.size()-i;j++){
+                if(process.get(j).fileName.compareTo(process.get(j+1).fileName)<0){
+                    temp=process.get(j);
+                    process.set(j,process.get(j+1));
+                    process.set(j+1,temp);
+                }
+            }
+        }
+        updateProcesing(1);
+    }
     public static void sortDate(){
         FormDownload temp;
         for(int i=1;i<process.size();i++){
@@ -45,11 +58,37 @@ public class DataBase {
         }
         updateProcesing(1);
     }
+    public static void sortDateReverce(){
+        FormDownload temp;
+        for(int i=1;i<process.size();i++){
+            for(int j=0;j<process.size()-i;j++){
+                if(process.get(j).time.compareTo(process.get(j+1).time)<0){
+                    temp=process.get(j);
+                    process.set(j,process.get(j+1));
+                    process.set(j+1,temp);
+                }
+            }
+        }
+        updateProcesing(1);
+    }
     public static void sortSize(){
         FormDownload temp;
         for(int i=1;i<process.size();i++){
             for(int j=0;j<process.size()-i;j++){
                 if(process.get(j).size-process.get(j+1).size>0){
+                    temp=process.get(j);
+                    process.set(j,process.get(j+1));
+                    process.set(j+1,temp);
+                }
+            }
+        }
+        updateProcesing(1);
+    }
+    public static void sortSizeReverce(){
+        FormDownload temp;
+        for(int i=1;i<process.size();i++){
+            for(int j=0;j<process.size()-i;j++){
+                if(process.get(j).size-process.get(j+1).size<0){
                     temp=process.get(j);
                     process.set(j,process.get(j+1));
                     process.set(j+1,temp);
@@ -131,7 +170,7 @@ public class DataBase {
                 formDownload.getSurface().setBackground(Color.yellow);
             }
             MyFrame.processing.add(formDownload.getSurface());
-            System.out.println(formDownload.fileName);
+//            System.out.println(formDownload.fileName);
             formDownload.getSurface().setVisible(true);
 
         }
@@ -143,7 +182,7 @@ public class DataBase {
 
     }
 
-    public static void updateQueue() { System.out.println("salam");
+    public static void updateQueue() {
         try {
             MyFrame.queues.removeAll();
         } catch (Exception e) {
@@ -197,7 +236,7 @@ public class DataBase {
             while (string != null) {
                 if (!string.equals("")) {
                     avoided.add(string);
-                    System.out.println(string);
+//                    System.out.println(string);
                 }
                 string = in.readLine();
             }
@@ -257,7 +296,7 @@ public class DataBase {
             while (temp != null) {
                 //System.out.println("*****************************************");
                 process.add(temp);
-                System.out.println(process.size());
+//                System.out.println(process.size());
                 temp = (FormDownload) objectInputStream.readObject();
 
             }

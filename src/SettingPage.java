@@ -75,7 +75,7 @@ public class SettingPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jFrame.dispatchEvent(new WindowEvent(jFrame, WindowEvent.WINDOW_CLOSING));
-                System.out.println(jFileChooser.getCurrentDirectory().getPath());
+//                System.out.println(jFileChooser.getCurrentDirectory().getPath());
                 DataBase.setPathDifault(jFileChooser.getCurrentDirectory().getPath());
             }
         });
@@ -169,7 +169,7 @@ public class SettingPage {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         jFrame.dispatchEvent(new WindowEvent(jFrame, WindowEvent.WINDOW_CLOSING));
-                        System.out.println(jFileChooser.getCurrentDirectory().getPath());
+//                        System.out.println(jFileChooser.getCurrentDirectory().getPath());
                         DataBase.setPathDifault(jFileChooser.getCurrentDirectory().getPath());
 
                     }
@@ -210,7 +210,7 @@ public class SettingPage {
         switch (text){
             case"nimbus":{
                 try {
-                  System.out.println("اومد تو");
+//                  System.out.println("اومد تو");
                     UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
@@ -239,7 +239,7 @@ public class SettingPage {
             }
             case"metal":{
                 try {
-                    System.out.println("وارد متال شد");
+//                    System.out.println("وارد متال شد");
                     UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();

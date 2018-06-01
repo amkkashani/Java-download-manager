@@ -13,9 +13,18 @@ public class Sorts {
         byName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DataBase.sortName();
+            DataBase.sortName();
+        }
+    });
+        JMenuItem byNameReverse = new JMenuItem("sort by name reverse");
+        byNameReverse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                System.out.println("salam");
+                DataBase.sortNameReverce();
             }
         });
+
         JMenuItem byDate = new JMenuItem("sort by date");
         byDate.addActionListener(new ActionListener() {
             @Override
@@ -23,6 +32,14 @@ public class Sorts {
                 DataBase.sortDate();
             }
         });
+        JMenuItem byDateReverce = new JMenuItem("sort by date Reverse");
+        byDateReverce.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DataBase.sortDateReverce();
+            }
+        });
+
         sorts.setFont(new Font("fff", 50, 25));
         JMenuItem bySize = new JMenuItem("sort by size");
         bySize.addActionListener(new ActionListener() {
@@ -31,10 +48,20 @@ public class Sorts {
                 DataBase.sortSize();
             }
         });
+        JMenuItem bySizeReverse = new JMenuItem("sort by size Reverse");
+        bySizeReverse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DataBase.sortSizeReverce();
+            }
+        });
 
         sorts.add(byName);
+        sorts.add(byNameReverse);
         sorts.add(byDate);
+        sorts.add(byDateReverce);
         sorts.add(bySize);
+        sorts.add(bySizeReverse);
 
     }
 

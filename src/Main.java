@@ -16,7 +16,7 @@ public class Main {
         // Stite => Site
         // jfram => jframe
         // scrool =>  scroll
-/*        Calendar cal = Calendar.getInstance();
+/*      Calendar cal = Calendar.getInstance();
         System.out.println(cal.get(Calendar.SECOND));
         Scanner scanner = new Scanner(System.in);
         int x= scanner.nextInt();
@@ -38,10 +38,17 @@ public class Main {
         FormDownload.selectedName = "";
         DataBase.updateQueue();
         DataBase.updateProcesing(1);
+        FormQueue.setActivityQueue(0);
+        cleanBeforDownloads();
         MyFrame myFrame = new MyFrame();
 //        DataBase.sortName();
         JFrame jfram = new JFrame();
-        System.out.println(DataBase.process.size());
-        System.out.println(DataBase.queue.size());
+//        System.out.println(DataBase.process.size());
+//        System.out.println(DataBase.queue.size());
+    }
+    public static void cleanBeforDownloads(){
+        for(FormDownload formDownload:DataBase.process){
+            formDownload.setActivity(0);
+        }
     }
 }

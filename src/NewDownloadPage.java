@@ -81,7 +81,7 @@ public class NewDownloadPage {
         public void actionPerformed(ActionEvent e) {
 
             String dastoor = ((JButton) e.getSource()).getText();
-            System.out.println(dastoor);
+//            System.out.println(dastoor);
 
             if (dastoor.equals("cancel")) {
                 jframe.setVisible(false); //you can't see me!
@@ -93,9 +93,14 @@ public class NewDownloadPage {
                 return;
             } else if (dastoor.equals("add to queue")) {
                 try {
-                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 1, 0, 0, DataBase.queue.size() + 1,Calendar.getInstance()));
+                    if (!jFileChooser.getCurrentDirectory().getPath().equals("C:\\Users\\Lenovo\\Documents")) {
+                        DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 1, 0, 0, DataBase.queue.size() + 1, Calendar.getInstance()));
+                    } else {
+                        DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 1, 1, 0, DataBase.queue.size() + 1, Calendar.getInstance()));
+
+                    }
                 } catch (Exception e1) {
-                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 1, 1, 1, DataBase.queue.size() + 1,Calendar.getInstance()));
+                    DataBase.queue.add(new FormQueue(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 1, 1, 0, DataBase.queue.size() + 1, Calendar.getInstance()));
                 }
                 if (DataBase.process.size() >= 7) {
                     MyFrame.processing.setLayout(new GridLayout(DataBase.process.size() + 1, 1));
@@ -110,13 +115,13 @@ public class NewDownloadPage {
                     if (DataBase.process.size() >= 7) {
                         MyFrame.processing.setLayout(new GridLayout(DataBase.process.size() + 1, 1));
                     }
-                    System.out.println((jFileChooser.getSelectedFile().getAbsolutePath()));
+//                    System.out.println((jFileChooser.getSelectedFile().getAbsolutePath()));
                     Calendar time = Calendar.getInstance();
-                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 1, 00, 0,time));
+                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), jFileChooser.getCurrentDirectory().getPath(), 1, 00, 0, time));
                 } catch (NullPointerException e1) {
                     //*************************************************************************************************size , speed , improve دستی اد شده
                     Calendar time = Calendar.getInstance();
-                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 1, 0, 45,time));
+                    DataBase.process.add(new FormDownload(jTextField2.getText(), jTextField1.getText(), DataBase.getPathDifault(), 1, 0, 0, time));
                     System.out.println("آدرس وارد نشد؟");
                     if (DataBase.process.size() >= 7) {
                         MyFrame.processing.setLayout(new GridLayout(DataBase.process.size() + 1, 1));

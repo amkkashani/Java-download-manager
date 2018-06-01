@@ -13,20 +13,25 @@ import java.util.Calendar;
  */
 
 public class FormDownload implements Serializable {
+
     public static String selectedName = "";
     public static String buttenSelected = "";
-
+    public JLabel sizefile = new JLabel("size");
     public JButton surface = new JButton();
     public Calendar time;
     public String address;
     public String setupLocation;
-    public int size;
+    public long size;
     public String fileName;
+    public boolean mustDelet;
     protected JPanel up;
     JProgressBar jProgressBar;
     public DownloadClient downloadClient=null;
     private int activity=0;
-
+    //0 بی کار
+    //1 در حال دانلود
+    // 2 تمام شده
+    //3 پاز شده
     public int isActivity() {
         return activity;
     }
@@ -50,7 +55,7 @@ public class FormDownload implements Serializable {
         up = new JPanel();
         up.setLayout(new GridLayout(1, 4));
         JLabel name = new JLabel("file name:" + fileName);
-        JLabel sizee = new JLabel("size:" + size);
+        JLabel sizee =sizefile;
         JLabel speedd = new JLabel("speed:" + speed);
         up.add(name);
         up.add(sizee);
@@ -88,7 +93,7 @@ public class FormDownload implements Serializable {
                 surface2.add(new JLabel("name:" + fileName));
                 surface2.add(new JLabel("location setup:" + setupLocation));
                 surface2.add(new JLabel("time start:" + time.get(Calendar.HOUR)+":"+time.get(Calendar.MINUTE)+":"+time.get(Calendar.SECOND)));
-                surface2.add(new JLabel("size:" + size));
+                surface2.add(sizefile);
                 details.setVisible(true);
                 return;
             }
@@ -103,7 +108,7 @@ public class FormDownload implements Serializable {
                 ((JButton) e.getSource()).setBackground(new Color(255, 255, 2));
                 selectedName = fileName;
                 System.out.println("با باتن دانلود برخورد کرد");
-                System.out.println(setupLocation);
+//                System.out.println(setupLocation);
 
             } else {
                 selectedName = fileName;
@@ -111,18 +116,18 @@ public class FormDownload implements Serializable {
 
                     DataBase.updateProcesing(1);
                     DataBase.updateQueue();
-                    System.out.println("در صف زدی");
+//                    System.out.println("در صف زدی");
                 } else {
-                    System.out.println("در پروسس زده شد");
+//                    System.out.println("در پروسس زده شد");
                     DataBase.updateQueue();
                     DataBase.updateProcesing(1);
                 }
-                System.out.println("کلیک نوع دوم با موفقیت انحام شد");
+//                System.out.println("کلیک نوع دوم با موفقیت انحام شد");
 
             }
 //            DataBase.updateQueue();
 //            DataBase.updateProcesing(1);
-            System.out.println("//////////////////"+buttenSelected+"///////////////////////");
+//            System.out.println("//////////////////"+buttenSelected+"///////////////////////");
             if(buttenSelected =="queues"){
                 new Left().getQueues().doClick();
 //                System.out.println(buttenSelected+"****************************************");
@@ -161,5 +166,8 @@ public class FormDownload implements Serializable {
     public void setjProgressBar(int value){
         jProgressBar.setValue(value);
 
+    }
+    public void setSizefile(long size){
+        sizefile.setText("size"+size);
     }
 }
